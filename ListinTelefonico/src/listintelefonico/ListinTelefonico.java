@@ -117,6 +117,9 @@ public class ListinTelefonico {
         }else{
             vnombres[posicion] = null;
             vnumeros[posicion] = -1;
+            
+            System.out.println("");
+            System.out.println("CONTACTO ELIMINADO");
         }
     }
     
@@ -137,6 +140,7 @@ public class ListinTelefonico {
         if(numero == 1){
             for(int i=0;i<vnombres.length;i++){
                 if(vnombres[i] != null){
+                    System.out.println("");
                     System.out.println("Contacto " + i + ": " + vnombres[i] + "  " + vnumeros[i]);
                 }
             }
@@ -163,36 +167,21 @@ public class ListinTelefonico {
         
         Scanner leer = new Scanner(System.in);
         int i = 0;
-        boolean ocupado = false;
         
-        while(ocupado == false){
-            
-            if(vnombres[i] == null){
-                System.out.println("");
-                System.out.println("HUECO VACÍO");
-                System.out.println("");
-                System.out.println("Introduzca el nombre del contacto que desea guardar");
-                vnombres[i] = leer.nextLine();
+        i = buscarHueco(vnombres);
+        
+        if (i == -1){
+            System.out.println("");
+            System.out.println("HUECO LLENO");
+        }else{
+            System.out.println("");
+            System.out.println("HUECO VACÍO");
+            System.out.println("");
+            System.out.println("Introduzca el nombre del contacto que desea guardar");
+            vnombres[i] = leer.nextLine();
 
-                System.out.println("Introduzca el número del contacto que desea guardar");
-                vnumeros[i] = leer.nextInt();
-                
-                ocupado = true;
-                
-                System.out.println("");
-                System.out.println("CONTACTO GUARDADO");
-                
-            }else{
-                //Si no esta vacío, pasa a la siguiente (si es igual al tamaño del array, no suma más)
-                if(i<vnombres.length){
-                    i = i + 1;
-                }else{
-                    //Si no hay sitio en el array, no deja guardar más
-                    System.out.println("");
-                    System.out.println("AGENDA LLENA");
-                    ocupado = true;
-                }
-            }
+            System.out.println("Introduzca el número del contacto que desea guardar");
+            vnumeros[i] = leer.nextInt();
         }
     }
 
@@ -211,6 +200,7 @@ public class ListinTelefonico {
         do{
             switch(menu()){
                 case 0:
+                    System.out.println("");
                     System.out.println("¡Hasta luego!");
                     bandera = false;
                     break;
