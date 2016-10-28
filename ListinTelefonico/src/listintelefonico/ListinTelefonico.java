@@ -8,7 +8,7 @@ public class ListinTelefonico {
         
         Scanner leer = new Scanner(System.in);
         int opcion = -1;
-
+        
         while(opcion<0 || opcion>4){
             System.out.println("");
             System.out.println("MENÚ");
@@ -38,7 +38,7 @@ public class ListinTelefonico {
         return posicion;
     }
     
-    //Si devuelve -1, no ha encontado el contacto
+    //Si devuelve -1, no ha encontrado el contacto
     public static int buscarContacto(String vnombres[],String nombre){
         
         int posicion = -1;
