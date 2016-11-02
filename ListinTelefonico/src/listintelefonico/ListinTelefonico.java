@@ -9,7 +9,7 @@ public class ListinTelefonico {
         Scanner leer = new Scanner(System.in);
         int opcion = -1;
         
-        while(opcion<0 || opcion>4){
+        while(opcion<0 || opcion>5){
             System.out.println("");
             System.out.println("MENÚ");
             System.out.println("0- Salir");
@@ -17,6 +17,7 @@ public class ListinTelefonico {
             System.out.println("2- Ver contactos");
             System.out.println("3- Eliminar contacto");
             System.out.println("4- Editar contacto");
+            System.out.println("5- Matriz de contactos");
             System.out.println("");
             System.out.println("Introduzca la opcion que desee realizar");
             opcion = leer.nextInt();
@@ -44,12 +45,29 @@ public class ListinTelefonico {
         int posicion = -1;
         
         for(int i=0;i<vnombres.length;i++){
+            if (vnombres[i]!=null)
             if(vnombres[i].equals(nombre)){
                 posicion = i;
                 i = vnombres.length + 1;
             }
         }
         return posicion;
+    }
+    
+    public static void verMatriz(String vnombres[],String mcontactos[][]){
+
+        for(int j=0;j<vnombres.length;j++){
+          System.out.println("Contacto: " + mcontactos[0][j] + " " + mcontactos[1][j]);  
+        } 
+    }
+    
+    //Tambien guarda los huecos del listin
+    public static void crearMatriz(String vnombres[], int vnumeros[], String mcontactos[][]){
+
+        for(int i=0;i<vnombres.length;i++){
+            mcontactos[0][i] = vnombres[i];
+            mcontactos[1][i] = String.valueOf(vnumeros[i]);
+        }   
     }
     
     public static void editarContactos(String vnombres[],int vnumeros[]){
@@ -196,6 +214,7 @@ public class ListinTelefonico {
         
         String vnombres[] = new String[tamaño];
         int vnumeros[] = new int[tamaño];
+        String mcontactos[][] = new String[2][tamaño];
         
         do{
             switch(menu()){
@@ -216,6 +235,9 @@ public class ListinTelefonico {
                 case 4:
                     editarContactos(vnombres,vnumeros);
                     break;
+                case 5:
+                    crearMatriz(vnombres,vnumeros,mcontactos);
+                    verMatriz(vnombres,mcontactos);
             }
                
         }while(bandera);
